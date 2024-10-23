@@ -59,6 +59,7 @@ istream& operator>>(ostream& in, const Vector<Elem>& vec) {
 }
 template<typename Elem>
 inline void Vector<Elem>::get_random() {
+	/*srand((unsigned)time(NULL));*/
 	for (int i = 0; i < Size(); i++) {
 		elems[i] = rand() % 201 - 100;//生成[-100,100]范围的随机数
 	}

@@ -175,7 +175,9 @@ void Matrix::clear() {
 }
 void Matrix::get_random() {
 	Vector<int> temp(col);
+	srand((unsigned)time(NULL));
 	for (int i = 0; i < row; i++) {
+		srand((unsigned)time(NULL) + i);
 		temp.get_random();
 		this->data[i] = temp;
 	}
