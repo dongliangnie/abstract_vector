@@ -15,13 +15,13 @@ void Matrix_Test() {
 		int select;
 		select = Choice("ÇëÊäÈëÄúµÄÑ¡Ôñ£º", "12345678");
 		switch (select) {
-			case '1':Test_Matrix_Multipy(); break;
-			case '2':Test_Matrix_Qpow(); break;
-			case '3':Test_Matrix_Rank(); break;
-			case '4':Test_Matrix_Determinant(); break;
-			case '5':Test_Determine_linear_correlation(); break;
-			case '6':Test_Matrix_Gauss(); break;
-			case '7':Test_Matrix_Inversion(); break;
+		case '1':Test_Matrix_Multipy(); break;
+		case '2':Test_Matrix_Qpow(); break;
+		case '3':Test_Matrix_Rank(); break;
+		case '4':Test_Matrix_Determinant(); break;
+		case '5':Test_Determine_linear_correlation(); break;
+		case '6':Test_Matrix_Gauss(); break;
+		case '7':Test_Matrix_Inversion(); break;
 		}
 		if (select == '8') break;
 	}
