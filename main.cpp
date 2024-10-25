@@ -26,8 +26,41 @@ void Matrix_Test() {
 		if (select == '8') break;
 	}
 }
+void Code_Test() {
+	while (1) {
+		menu();
+		int choice;
+		cout << "请输入你的选择([0],[1],[2],[3],[4])" << endl;
+		cin >> choice;
+		switch (choice)
+		{
+		case 0:
+			cout << "感谢你的使用，再见~" << endl;
+			return;
+		case 1:
+			system("cls");
+			fRegister();
+			break;
+		case 2:
+			system("cls");
+			fChangeCodeWay();
+			break;
+		case 3:
+			system("cls");
+			fLog();
+			break;
+		case 4:
+			system("cls");
+			fChangeCodeWay();
+			break;
+		}
+	}
+	return;
+}
+
 int main() {
 	/*Matrix_Test();*/
-	Auto_Test();
+	/*Auto_Test();*/
+    Code_Test();
 	return 0;
 }
