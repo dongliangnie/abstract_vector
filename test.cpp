@@ -448,8 +448,7 @@ void Auto_Test() {
 		Manacher();
 	}
 }
-
-
+//cout<<"你好"<<endl;
 void fRegister() {
 	cout << "***请输入一个偶数位或位数为3的倍数的密码****" << endl;
 	String  Strreg;
