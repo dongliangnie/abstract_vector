@@ -432,3 +432,17 @@ void Test_Matrix_Inversion() {
 		}
 	}
 }
+void Auto_Test() {
+	while (true) {
+		int op;
+		cout << "是否进行自动机功能检测，请输入您的选择（0表示退出）：";
+		cin >> op;
+		if (op == 0)
+			break;
+		cout << "关键词功能" << endl;
+		ACauto();
+		cout << endl;
+		cout << "回文检测功能" << endl;
+		Manacher();
+	}
+}

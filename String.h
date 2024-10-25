@@ -14,4 +14,6 @@ public:
     friend ostream& operator<<(ostream& out,String& str);
     friend istream& operator>>(istream& in, String& str);
 };
+void ACauto();
+void Manacher();
 

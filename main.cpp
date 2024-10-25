@@ -27,6 +27,7 @@ void Matrix_Test() {
 	}
 }
 int main() {
-	Matrix_Test();
+	/*Matrix_Test();*/
+	Auto_Test();
 	return 0;
 }

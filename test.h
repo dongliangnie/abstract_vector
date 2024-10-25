@@ -20,3 +20,28 @@ void Test_Matrix_Gauss();
 void Test_Matrix_Rank();
 //模1000000007意义下矩阵的逆测试函数
 void Test_Matrix_Inversion();
+void Auto_Test();
+/*
+测试案例（复制输入即可）
+1
+6
+beta
+alpha
+haha
+delta
+dede
+tata
+dedeltalphahahahototatalpha
+aabbaabbabbabb
+
+1
+6
+beta
+alpha
+haha
+delta
+dede
+tata
+dedaltblphahbhahototatolqha
+HelloWorld
+*/
