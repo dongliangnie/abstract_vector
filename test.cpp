@@ -1,6 +1,8 @@
 #pragma once
 #include"test.h"
 #include<conio.h>
+#include<Code.h>
+#include <cstring>
 using namespace std;
 int Pos(char ch, const char* str)			// 返回指定字符ch在字符串str中的下标。不存在时返回-1
 {
@@ -446,3 +448,98 @@ void Auto_Test() {
 		Manacher();
 	}
 }
+
+
+void fRegister() {
+	cout << "***请输入一个偶数位或位数为3的倍数的密码****" << endl;
+	String  Strreg;
+	while (1) {
+		cin >> Strreg;
+		if (Strreg.size() % 2 == 0) {
+			CodeNum2 = 2;
+			break;
+		}
+		else if (Strreg.size() % 3 == 0)
+		{
+			CodeNum2 = 3;
+			break;
+		}
+		else
+		{
+			cout << "*******输入的密码不合法，请重新输入！*******" << endl;
+		}
+		//cout << Strreg << endl;
+	}
+	Code(Strreg, CodeNum1);
+	system("pause");
+	system("cls");
+}
+void fChangeCode() {
+	cout << "*************请输入更改后的密码*************" << endl;
+	String Strin;
+	cin >> Strin;
+	changeCode(Strin);
+	system("pause");
+	system("cls");
+}
+void fLog() {
+	cout << "**************请输入您的密码****************" << endl;
+	String  Strlog;
+	cin >> Strlog;
+	JudgeisCorrect(Strlog);
+	system("pause");
+	system("cls");
+}
+void fChangeCodeWay() {
+	cout << "*********请输入1或2以更改加密方式***********" << endl;
+	cin >> CodeNum1;
+	cout << "CodeNum1= " << CodeNum1 << endl;
+	cout << "******************更改完成!*****************" << endl;
+	system("pause");
+	system("cls");
+}
+void menu() {
+	cout << "********************************************" << endl;
+	cout << "************  欢迎使用xxx系统！*************" << endl;
+	cout << "*************  0.退出管理程序  *************" << endl;
+	cout << "*************  1.注册          *************" << endl;
+	cout << "*************  2.更改密码      *************" << endl;
+	cout << "*************  3.登陆          *************" << endl;
+	cout << "*************  4.选择加密方式  *************" << endl;
+	cout << "********************************************" << endl;
+	cout << endl;
+}
+
+
+void Code_Test() {
+	while (1) {
+		menu();
+		int choice;
+		cout << "请输入你的选择([0],[1],[2],[3],[4])" << endl;
+		cin >> choice;
+		switch (choice)
+		{
+		case 0:
+			cout << "感谢你的使用，再见~" << endl;
+			return;
+		case 1:
+			system("cls");
+			fRegister();
+			break;
+		case 2:
+			system("cls");
+			fChangeCode();
+			break;
+		case 3:
+			system("cls");
+			fLog();
+			break;
+		case 4:
+			system("cls");
+			fChangeCodeWay();
+			break;
+		}
+	}
+	return ;
+}
+

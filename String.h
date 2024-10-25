@@ -13,6 +13,8 @@ public:
     int size();
     friend ostream& operator<<(ostream& out,String& str);
     friend istream& operator>>(istream& in, String& str);
+    bool operator==(const String& s) const;
+    bool operator==(const char* s) const;
 };
 void ACauto();
 void Manacher();

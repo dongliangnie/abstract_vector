@@ -51,6 +51,16 @@ istream& operator>>(istream& in, String& str)
 	str.input(in);
 	return in;
 }
+
+bool String::operator==(const String& s) const {
+    if (strCmp(*this, s) == 1) return 1;
+    else return 0;
+}
+bool String::operator==(const char* s) const {
+    String tmp(s);
+    if (strCmp(*this, tmp) == 1) return 1;
+    else return 0;
+}
 //以下为AC自动机功能
 
 const int MAXN = 10001;
@@ -265,4 +275,14 @@ void Manacher()
         ans += p[i] / 2;//p[i]/2表示以i为中心的回文串数量
     }
     cout << "这个字符串的回文子串一共有 " << ans << " 个" << endl;
+}
+
+
+bool strCmp(String a, String b)
+{
+    int sz = a.num;
+    for (int i = 0; i < sz; i++) {
+        if (a.elems[i] != b.elems[i]) return 0;
+    }
+    return 1;
 }
