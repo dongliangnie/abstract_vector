@@ -1,7 +1,7 @@
 #pragma once
 #include"test.h"
 #include<conio.h>
-#include<Code.h>
+#include"Code.h"
 #include <cstring>
 using namespace std;
 int Pos(char ch, const char* str)			// 返回指定字符ch在字符串str中的下标。不存在时返回-1
@@ -448,7 +448,6 @@ void Auto_Test() {
 		Manacher();
 	}
 }
-//cout<<"你好"<<endl;
 void fRegister() {
 	cout << "***请输入一个偶数位或位数为3的倍数的密码****" << endl;
 	String  Strreg;
@@ -474,7 +473,7 @@ void fRegister() {
 	system("cls");
 }
 void fChangeCode() {
-	cout << "*************请输入更改后的密码*************" << endl;
+	cout << "****************请输入更改后的密码****************" << endl;
 	String Strin;
 	cin >> Strin;
 	changeCode(Strin);
@@ -492,7 +491,7 @@ void fLog() {
 void fChangeCodeWay() {
 	cout << "*********请输入1或2以更改加密方式***********" << endl;
 	cin >> CodeNum1;
-	cout << "CodeNum1= " << CodeNum1 << endl;
+	/*cout << "CodeNum1= " << CodeNum1 << endl;*/
 	cout << "******************更改完成!*****************" << endl;
 	system("pause");
 	system("cls");

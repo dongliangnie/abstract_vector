@@ -15,4 +15,4 @@ void JudgeisCorrect(String Strin);
 void changeCode(String& Strin);
 String FenceCode(String& Strin, int& CodeNum2);
 String FenceEncode(String Strtxt, int& CodeNum2);
-
+#endif
