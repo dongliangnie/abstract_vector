@@ -101,7 +101,7 @@
 //inline void Vec<Elem>::resize(int size)
 //{
 //	if (size > num) {
-//		Elem * tmp = new Elem[max(_size, size)];//½«Êı×é¸´ÖÆÒ»±é
+//		Elem * tmp = new Elem[max(_size, size)];//å°†æ•°ç»„å¤åˆ¶ä¸€é
 //		for (int i = 0; i <num; i++) {
 //			tmp[i] = elems[i];
 //		}
@@ -138,7 +138,6 @@
 //	v.input(in);
 //	return in;
 //}
-
 #pragma once
 #include<iostream>
 using namespace std;
@@ -240,7 +239,7 @@ template<typename Elem>
 inline void Vec<Elem>::resize(int size)
 {
 	if (size > num) {
-		Elem* tmp = new Elem[max(_size, size)];//½«Êı×é¸´ÖÆÒ»±é
+		Elem* tmp = new Elem[max(_size, size)];//å°†æ•°ç»„å¤åˆ¶ä¸€é
 		for (int i = 0; i < num; i++) {
 			tmp[i] = elems[i];
 		}
@@ -280,3 +279,4 @@ template<typename Elem> istream& operator>>(istream& in, Vec<Elem> v) {
 	v.input(in);
 	return in;
 }
+
