@@ -159,6 +159,7 @@ String Load() {
 	}
 	return Str;
 }
+//cout<<"ÄãºÃ"<<endl;
 void changeCode(String& Strin) {
 	String StrRead;
 	StrRead = EnCode(CodeNum1);
