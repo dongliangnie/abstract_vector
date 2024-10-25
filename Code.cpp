@@ -39,7 +39,7 @@ String FenceCode(String& Strin, int& CodeNum2) {
 			StrCoded[i] = Strin[2 * i];
 		for (int i = StrCoded.size() / 2; i < StrCoded.size(); i++)
 			StrCoded[i] = Strin[2 * (i - StrCoded.size() / 2) + 1];
-		cout << "StrCoded=" << StrCoded << endl;
+		//cout << "StrCoded=" << StrCoded << endl;
 		return StrCoded;
 	}
 	else if (CodeNum2 == 3) {
@@ -51,7 +51,7 @@ String FenceCode(String& Strin, int& CodeNum2) {
 			StrCoded[i] = Strin[3 * (i - StrCoded.size() / 3) + 1];
 		for (int i = StrCoded.size() / 3 * 2; i < StrCoded.size(); i++)
 			StrCoded[i] = Strin[3 * (i - StrCoded.size() / 3 * 2) + 2];
-		cout << "StrCoded=" << StrCoded << endl;
+		/*cout << "StrCoded=" << StrCoded << endl;*/
 		return StrCoded;
 	}
 }
@@ -59,28 +59,28 @@ void JudgeisCorrect(String Strin) {
 	int mistake = 0;
 	/*cout << Strin << endl;*/
 	while (1) {
-		if (JudgeCode(Strin) == 1) {
-			cout << "密码验证成功" << endl;
-			cout << "登陆成功~~~" << endl;
-			break;
-		}
-		else {
+		if (Strin.size() % CodeNum2 != 0 || JudgeCode(Strin) == 0) {
 			mistake++;
 			if (mistake == 3)
 			{
-				cout << "密码输入错误次数已达3次，请稍后再试" << endl;
+				cout << "*******密码输入错误次数已达3次，请稍后再试*******" << endl;
 				break;
 			}
-			cout << "密码输入有误，是否重新输入？(0重新输入,1退回至菜单界面)" << endl;
+			cout << "*密码输入有误，是否重新输入？(0重新输入,1退回至菜单界面)*" << endl;
 			int choice;
 			cin >> choice;
 			if (choice == 1)
 				break;
 			else if (choice == 0)
 			{
-				cout << "请再次输入密码：" << endl;
+				cout << "**************请再次输入密码：**************" << endl;
 				cin >> Strin;
 			}
+		}
+		else {
+			cout << "******************密码验证成功******************" << endl;
+			cout << "*******************登陆成功~~~******************" << endl;
+			break;
 		}
 	}
 }
@@ -88,7 +88,7 @@ void JudgeisCorrect(String Strin) {
 String EnCode(int sum) {
 	String Strtxt;
 	Strtxt = Load();
-	cout << "Strtxt=" << Strtxt << endl;
+	/*cout << "Strtxt=" << Strtxt << endl;*/
 	switch (sum) {
 	case 1:
 		for (int i = 0; i < Strtxt.size(); i++)
@@ -99,7 +99,7 @@ String EnCode(int sum) {
 	case 2:
 		String StrEncoded;
 		StrEncoded = FenceEncode(Strtxt, CodeNum2);
-		cout << StrEncoded;
+		/*cout << StrEncoded;*/
 		return StrEncoded;
 		break;
 	}
@@ -117,11 +117,11 @@ String FenceEncode(String Strtxt, int& CodeNum2) {
 		k++;
 		k = k % CodeNum2;
 	}
-	cout << "StrEncoded=" << StrEncoded << endl;
+	/*cout << "StrEncoded=" << StrEncoded << endl;*/
 	return StrEncoded;
 }
 bool JudgeCode(String& Strin) {
-	if (Strin == EnCode(CodeNum1))
+	if (Strin == EnCode(CodeNum1) && (Strin.size() == EnCode(CodeNum1).size()))
 		return 1;
 	return 0;
 }
@@ -135,10 +135,10 @@ void Save(String& LatStr) //将加密后的字符串保存到文档中
 	}
 	file.close();
 	if (flag1 == 1) {
-		cout << "恭喜你，注册成功！" << endl;
+		cout << "****************恭喜你，注册成功！****************" << endl;
 	}
 	else if (flag1 == 0)
-		cout << "恭喜你，更改密码成功！" << endl;
+		cout << "**************恭喜你，更改密码成功！**************" << endl;
 }
 
 
@@ -159,16 +159,30 @@ String Load() {
 	}
 	return Str;
 }
-//cout<<"你好"<<endl;
+
 void changeCode(String& Strin) {
 	String StrRead;
 	StrRead = EnCode(CodeNum1);
 	flag1 = 0;
-	if (StrRead == Strin)
-		cout << "更改后的密码与原密码相同，更改失败！" << endl;
+	if (StrRead == Strin && (StrRead.size() == Strin.size()))
+		cout << "*******更改后的密码与原密码相同，更改失败！*******" << endl;
 	else
 	{
-		Save(Strin);
+		if (CodeNum1 == 1)
+		{
+			String StrChange;
+			StrChange.resize(Strin.size());
+			for (int i = 0; i < Strin.size(); i++)
+			{
+				StrChange[i] = Strin[i] + 2;
+			}
+			Save(StrChange);
+		}
+		else {
+			String Strchange;
+			Strchange = FenceCode(Strin, CodeNum2);
+			Save(Strchange);
+		}
 	}
 
 }

@@ -453,7 +453,6 @@ void Auto_Test() {
 		Manacher();
 	}
 }
-//cout<<"你好"<<endl;
 void fRegister() {
 	cout << "***请输入一个偶数位或位数为3的倍数的密码****" << endl;
 	String  Strreg;
@@ -479,7 +478,7 @@ void fRegister() {
 	system("cls");
 }
 void fChangeCode() {
-	cout << "*************请输入更改后的密码*************" << endl;
+	cout << "****************请输入更改后的密码****************" << endl;
 	String Strin;
 	cin >> Strin;
 	changeCode(Strin);
