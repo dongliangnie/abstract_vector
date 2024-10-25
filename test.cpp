@@ -248,9 +248,14 @@ void Test_Matrix_Gauss() {
 		}
 		cout << "请输入矩阵系数矩阵A：" << endl;
 		mtx.input();
-		Vector<double> ans = mtx.Gauss(b);
-		cout << "解向量：" << endl;
-		ans.output(cout);
+		try {
+			Vector<double> ans = mtx.Gauss(b);
+			cout << "解向量：" << endl;
+			ans.output(cout);
+		}
+		catch (const char* msg) {
+			cout<<msg<<endl;
+		}
 	}
 	else {
 		mtx.get_random();
