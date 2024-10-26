@@ -323,25 +323,33 @@ int Matrix::Get_Rank() {
 	long long** A = new long long* [110];
 	for (int i = 0; i < 110; i++)
 		A[i] = new long long[110];
-	memset(A, 0, sizeof A);
-	for (int i = 1; i <= row; i++) {
-		for (int j = 1; j <= col; j++) {
-			A[i][j] = data[i - 1][j - 1];
+	for (int i = 0; i < 110; ++i) {
+		for (int j = 0; j < 110; ++j) {
+			A[i][j] = 0;
+		}
+	}
+	for (int i = 0; i <row; i++) {
+		for (int j = 0; j <col; j++) {
+			A[i][j] = data[i][j];
 		}
 	}
 	int r, c;
-	for (c = 1, r = 1; c <= row; c++) {
+	for (c = 0, r = 0; c < col; c++) {
+		//查找第c列绝对值最大的数所在的行
 		int t = r;
-		for (int i = r; i <= row; i++)
-			if (abs(A[i][c]) > abs(A[t][c])) t = i;
-		if (abs(A[t][c]) == 0) continue;
-		for (int i = c; i <= 2 * row; i++)	swap(A[r][i], A[t][i]);
-		long long temp1 = qpow(A[r][c], mod - 2);
-		for (int i = 2 * row; i >= c; i--) A[r][i] = A[r][i] * temp1 % mod;
-		for (int i = r + 1; i <= row; i++) {
-			if (abs(A[i][c])) {
-				for (int j = 2 * row; j >= c; j--)
-					A[i][j] = (A[i][j] - A[i][c] * A[r][j] % mod) % mod;
+		for (int i = r; i < row; i++)
+			if (fabs(A[i][c]) > fabs(A[t][c])) t = i;
+		//如果某列全零，不需要执行下面的归一，消元。
+		if (fabs(A[t][c]) < eps) continue;
+		//将第c列绝对值最大的数所在的行交换到第r行
+		for (int i = c; i <= col; i++)	swap(A[r][i], A[t][i]);
+		//将第c列绝对值最大的数所在的行的第一个非零元归一。
+		for (int i = col; i >= c; i--) A[r][i] /= A[r][c];
+		//将第c列r行以下的所有数归零。
+		for (int i = r + 1; i < row; i++) {
+			if (fabs(A[i][c]) > eps) {
+				for (int j = col; j >= c; j--)
+					A[i][j] = A[i][j] - A[i][c] * A[r][j];
 			}
 		}
 		r++;
@@ -351,14 +359,22 @@ int Matrix::Get_Rank() {
 		delete[] A[i];
 	}
 	delete[] A;
-	return r-1;
+	return r;
 }
 Vector<double> Matrix::Gauss(Vector<int>& vec) {
 	Vector<double> res(col);
 	double** A = new double* [110];
 	for (int i = 0; i < 110; i++)
 		A[i] = new double[110];
+	for (int i = 0; i < 110; ++i) {
+		for (int j = 0; j < 110; ++j) {
+			A[i][j] = 0;
+		}
+	}
 	if (vec.Size() != row) throw invalid_argument("invalid parament!");
+	if (row<col) {
+		throw ("无解或者有无数解");
+	}
 	for (int i = 0; i < row; i++) {
 		for (int j = 0; j < col; j++) {
 			A[i][j] = data[i][j];
@@ -386,14 +402,16 @@ Vector<double> Matrix::Gauss(Vector<int>& vec) {
 		}
 		r++;
 	}
-	if (r < row) {
+	if (r < col||r>col) {
 		throw ("无解或者有无数解");
 	}
 	else {
-		for (int i = row - 1; i >= 0; i--)
+		for(int i=r;i<row;i++) 
+			if(A[i][col]!=0) throw ("无解或者有无数解");
+		for (int i = r - 2; i >= 0; i--)
 			for (int j = i + 1; j < col; j++)
-				A[i][col] -= A[i][j] * A[j][col];
-		for (int i = 0; i < row; i++) {
+				A[i][col] -= A[i][j] * A[j][col],A[i][j] = 0;
+		for (int i = 0; i < col; i++) {
 			res[i] = A[i][col];
 		}
 	}

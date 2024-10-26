@@ -96,12 +96,12 @@
 //	if (index >= num) throw "overflow";
 //	return elems[index];
 //}
-
+//
 //template<typename Elem>
 //inline void Vec<Elem>::resize(int size)
 //{
 //	if (size > num) {
-//		Elem * tmp = new Elem[max(_size, size)];//½«Êı×é¸´ÖÆÒ»±é
+//		Elem * tmp = new Elem[max(_size, size)];//å°†æ•°ç»„å¤åˆ¶ä¸€é
 //		for (int i = 0; i <num; i++) {
 //			tmp[i] = elems[i];
 //		}
@@ -138,7 +138,6 @@
 //	v.input(in);
 //	return in;
 //}
-
 #pragma once
 #include<iostream>
 using namespace std;
@@ -152,10 +151,12 @@ public:
 	Vec(const Vec<Elem>& v);
 	virtual ~Vec();
 	Vec<Elem>& operator=(const Vec<Elem>& v);
-	Elem& operator[](int index);
+	Elem& operator[](int index) const;
 	void resize(int size);
-	virtual void output(ostream& out) const = 0;
-	virtual void input(istream& in) = 0;
+	virtual void output(ostream& out) const {
+	};
+	virtual void input(istream& in) {
+	};
 protected:
 	int num;
 	int _size;
@@ -230,7 +231,7 @@ inline Vec<Elem>& Vec<Elem>::operator=(const Vec& v)
 }
 
 template<typename Elem>
-inline Elem& Vec<Elem>::operator[](int index)
+inline Elem& Vec<Elem>::operator[](int index)const
 {
 	if (index >= num) throw "overflow";
 	return elems[index];
@@ -240,7 +241,7 @@ template<typename Elem>
 inline void Vec<Elem>::resize(int size)
 {
 	if (size > num) {
-		Elem* tmp = new Elem[max(_size, size)];//½«Êı×é¸´ÖÆÒ»±é
+		Elem* tmp = new Elem[max(_size, size)];//å°†æ•°ç»„å¤åˆ¶ä¸€é
 		for (int i = 0; i < num; i++) {
 			tmp[i] = elems[i];
 		}
@@ -280,3 +281,4 @@ template<typename Elem> istream& operator>>(istream& in, Vec<Elem> v) {
 	v.input(in);
 	return in;
 }
+

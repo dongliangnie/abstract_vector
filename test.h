@@ -21,6 +21,11 @@ void Test_Matrix_Rank();
 //模1000000007意义下矩阵的逆测试函数
 void Test_Matrix_Inversion();
 void Auto_Test();
+void fRegister();
+void fLog();
+void fChangeCodeWay();
+void menu();
+
 /*
 测试案例（复制输入即可）
 1

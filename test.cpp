@@ -1,7 +1,7 @@
 #pragma once
 #include"test.h"
 #include<conio.h>
-#include<Code.h>
+#include"Code.h"
 #include <cstring>
 using namespace std;
 int Pos(char ch, const char* str)			// 返回指定字符ch在字符串str中的下标。不存在时返回-1
@@ -99,7 +99,7 @@ void Test_Matrix_Qpow() {
 	select = Choice("请输入您的选择", "12");
 	int siz;
 	cout << "请输入方阵的大小:" << endl;
-	cin >>siz;
+	cin >> siz;
 	while (cin.fail()) { //返回cin的状态
 		cin.clear();     //清除cin的错误状态
 		cin.ignore();    //忽略缓冲区的内容，直到EOF
@@ -122,7 +122,7 @@ void Test_Matrix_Qpow() {
 		cout << "矩阵快速幂算法输出：" << endl;
 		cout << qpow(mtx, p);
 		cout << "矩阵幂的校验值：" << endl;
-		Matrix Ans(siz,siz);
+		Matrix Ans(siz, siz);
 		Ans.unitizate(siz);
 		for (int i = 0; i < p; i++) {
 			Ans *= mtx;
@@ -190,7 +190,7 @@ void Test_Matrix_Rank() {
 		cin.clear();     //清除cin的错误状态
 		cin.ignore();    //忽略缓冲区的内容，直到EOF
 		cout << "输入错误，请重新输入" << endl;
-		cin >>rr;      //重新输入
+		cin >> rr;      //重新输入
 	}
 	cin >> cc;
 	while (cin.fail()) { //返回cin的状态
@@ -242,15 +242,20 @@ void Test_Matrix_Gauss() {
 	if (select == '1') {
 		cout << "请输入b向量：" << endl;
 		b.input(cin);
-		while(b.Size() != rr) {
+		while (b.Size() != rr) {
 			cout << "输入不合法，无法求解线性方程组！请再次输入" << endl;
 			b.input(cin);
 		}
 		cout << "请输入矩阵系数矩阵A：" << endl;
 		mtx.input();
-		Vector<double> ans=mtx.Gauss(b);
-		cout << "解向量：" << endl;
-		ans.output(cout);
+		try {
+			Vector<double> ans = mtx.Gauss(b);
+			cout << "解向量：" << endl;
+			ans.output(cout);
+		}
+		catch (const char* msg) {
+			cout<<msg<<endl;
+		}
 	}
 	else {
 		mtx.get_random();
@@ -291,7 +296,7 @@ void Test_Matrix_Multipy() {
 			cin >> c1;      //重新输入
 		}
 		Matrix mtx1(r1, c1);
-		if (vec.Size()!= r1 && vec.Size() != c1) {
+		if (vec.Size() != r1 && vec.Size() != c1) {
 			cout << "维数不匹配，无效！" << endl;
 		}
 		else {
@@ -306,11 +311,11 @@ void Test_Matrix_Multipy() {
 		cin >> r2 >> c2;
 		cout << "请输入第二个待乘矩阵的row,col" << endl;
 		cin >> r3 >> c3;
-		Matrix mtx2(r2,c2), mtx3(r3,c3);
+		Matrix mtx2(r2, c2), mtx3(r3, c3);
 		if (c2 != r3 && c3 != r2) {
 			cout << "维数不匹配，无效！" << endl;
 		}
-		else if(c2 == r3){
+		else if (c2 == r3) {
 			cout << "请输入第一个待乘矩阵：" << endl;
 			mtx2.input();
 			cout << "请输入第二个待乘矩阵：" << endl;
@@ -407,7 +412,7 @@ void Test_Matrix_Inversion() {
 		cin.clear();     //清除cin的错误状态
 		cin.ignore();    //忽略缓冲区的内容，直到EOF
 		cout << "输入错误，请重新输入" << endl;
-		cin >>siz;      //重新输入
+		cin >> siz;      //重新输入
 	}
 	Matrix mtx(siz, siz);
 	if (select == '1') {
@@ -430,7 +435,7 @@ void Test_Matrix_Inversion() {
 			cout << mtx.Get_Inversion();
 		}
 		catch (invalid_argument) {
-			cerr <<"矩阵非满秩，矩阵的逆不存在"<< std::endl;
+			cerr << "矩阵非满秩，矩阵的逆不存在" << std::endl;
 		}
 	}
 }
@@ -448,7 +453,6 @@ void Auto_Test() {
 		Manacher();
 	}
 }
-//cout<<"你好"<<endl;
 void fRegister() {
 	cout << "***请输入一个偶数位或位数为3的倍数的密码****" << endl;
 	String  Strreg;
@@ -474,7 +478,7 @@ void fRegister() {
 	system("cls");
 }
 void fChangeCode() {
-	cout << "*************请输入更改后的密码*************" << endl;
+	cout << "****************请输入更改后的密码****************" << endl;
 	String Strin;
 	cin >> Strin;
 	changeCode(Strin);
@@ -492,7 +496,7 @@ void fLog() {
 void fChangeCodeWay() {
 	cout << "*********请输入1或2以更改加密方式***********" << endl;
 	cin >> CodeNum1;
-	cout << "CodeNum1= " << CodeNum1 << endl;
+	/*cout << "CodeNum1= " << CodeNum1 << endl;*/
 	cout << "******************更改完成!*****************" << endl;
 	system("pause");
 	system("cls");
@@ -508,37 +512,3 @@ void menu() {
 	cout << "********************************************" << endl;
 	cout << endl;
 }
-
-
-void Code_Test() {
-	while (1) {
-		menu();
-		int choice;
-		cout << "请输入你的选择([0],[1],[2],[3],[4])" << endl;
-		cin >> choice;
-		switch (choice)
-		{
-		case 0:
-			cout << "感谢你的使用，再见~" << endl;
-			return;
-		case 1:
-			system("cls");
-			fRegister();
-			break;
-		case 2:
-			system("cls");
-			fChangeCode();
-			break;
-		case 3:
-			system("cls");
-			fLog();
-			break;
-		case 4:
-			system("cls");
-			fChangeCodeWay();
-			break;
-		}
-	}
-	return ;
-}
-

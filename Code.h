@@ -6,10 +6,10 @@ extern int CodeNum1;
 extern int flag1;
 extern int CodeNum2;
 using namespace std;
-void Code(String PreStr, int CodeNum1);         //¶ÔÊäÈë×Ö·û´®½øĞĞ¼ÓÃÜ
-String EnCode(int CodeNum1);                      //¶ÔÎÄµµÖĞ×Ö·û´®½øĞĞ½âÃÜ
-bool JudgeCode(String& Strin);             //ÅĞ¶ÏÊäÈë×Ö·û´®ÓëÎÄµµÖĞ×Ö·û´®ÊÇ·ñÏàÍ¬£¬ÏàÍ¬ÔòÊä³ö1£¬²»Í¬ÔòÊä³ö0
-void Save(String& LatStr);               //±£´æ×Ö·û´®µ½ÎÄµµÖĞ
+void Code(String PreStr, int CodeNum1);         //å¯¹è¾“å…¥å­—ç¬¦ä¸²è¿›è¡ŒåŠ å¯†
+String EnCode(int CodeNum1);                      //å¯¹æ–‡æ¡£ä¸­å­—ç¬¦ä¸²è¿›è¡Œè§£å¯†
+bool JudgeCode(String& Strin);             //åˆ¤æ–­è¾“å…¥å­—ç¬¦ä¸²ä¸æ–‡æ¡£ä¸­å­—ç¬¦ä¸²æ˜¯å¦ç›¸åŒï¼Œç›¸åŒåˆ™è¾“å‡º1ï¼Œä¸åŒåˆ™è¾“å‡º0
+void Save(String& LatStr);               //ä¿å­˜å­—ç¬¦ä¸²åˆ°æ–‡æ¡£ä¸­
 String Load();
 void JudgeisCorrect(String Strin);
 void changeCode(String& Strin);
