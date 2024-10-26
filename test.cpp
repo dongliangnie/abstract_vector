@@ -248,9 +248,14 @@ void Test_Matrix_Gauss() {
 		}
 		cout << "请输入矩阵系数矩阵A：" << endl;
 		mtx.input();
-		Vector<double> ans = mtx.Gauss(b);
-		cout << "解向量：" << endl;
-		ans.output(cout);
+		try {
+			Vector<double> ans = mtx.Gauss(b);
+			cout << "解向量：" << endl;
+			ans.output(cout);
+		}
+		catch (const char* msg) {
+			cout<<msg<<endl;
+		}
 	}
 	else {
 		mtx.get_random();
@@ -506,37 +511,4 @@ void menu() {
 	cout << "*************  4.选择加密方式  *************" << endl;
 	cout << "********************************************" << endl;
 	cout << endl;
-}
-
-
-void Code_Test() {
-	while (1) {
-		menu();
-		int choice;
-		cout << "请输入你的选择([0],[1],[2],[3],[4])" << endl;
-		cin >> choice;
-		switch (choice)
-		{
-		case 0:
-			cout << "感谢你的使用，再见~" << endl;
-			return;
-		case 1:
-			system("cls");
-			fRegister();
-			break;
-		case 2:
-			system("cls");
-			fChangeCode();
-			break;
-		case 3:
-			system("cls");
-			fLog();
-			break;
-		case 4:
-			system("cls");
-			fChangeCodeWay();
-			break;
-		}
-	}
-	return;
 }
