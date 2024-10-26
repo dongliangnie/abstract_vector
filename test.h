@@ -22,6 +22,7 @@ void Test_Matrix_Rank();
 void Test_Matrix_Inversion();
 void Auto_Test();
 void fRegister();
+void fChangeCode();
 void fLog();
 void fChangeCodeWay();
 void menu();

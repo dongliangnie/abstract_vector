@@ -8,7 +8,7 @@ int flag1;
 int CodeNum2;
 void Code(String PreStr, int sum) {
 	//String LatStr(PreStr);
-	cout << "sum=" << sum << endl;
+	/*cout << "sum=" << sum << endl;*/
 	String LatStr;
 	/*cout << LatStr.size() << " " << PreStr.size() << endl;*/
 	LatStr.resize(PreStr.size());
@@ -23,11 +23,9 @@ void Code(String PreStr, int sum) {
 		/*cout << "密码加密后为:LatStr:" << LatStr << endl;*/
 		Save(LatStr);
 		break;
-	case 2:
+	case 2://编码方式为栅栏密码，允许输入字符串长度为2或3的倍数
 		LatStr = FenceCode(PreStr, CodeNum2);
 		Save(LatStr);
-		break;
-	case 3:
 		break;
 	}
 }
@@ -164,8 +162,10 @@ void changeCode(String& Strin) {
 	String StrRead;
 	StrRead = EnCode(CodeNum1);
 	flag1 = 0;
-	if (StrRead == Strin && (StrRead.size() == Strin.size()))
+	if (StrRead == Strin && (StrRead.size() == Strin.size())) {
 		cout << "*******更改后的密码与原密码相同，更改失败！*******" << endl;
+		return;
+	}
 	else
 	{
 		if (CodeNum1 == 1)
@@ -177,11 +177,13 @@ void changeCode(String& Strin) {
 				StrChange[i] = Strin[i] + 2;
 			}
 			Save(StrChange);
+			return;
 		}
 		else {
 			String Strchange;
 			Strchange = FenceCode(Strin, CodeNum2);
 			Save(Strchange);
+			return;
 		}
 	}
 

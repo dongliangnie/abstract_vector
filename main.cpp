@@ -45,7 +45,7 @@ void Code_Test() {
 			break;
 		case 2:
 			system("cls");
-			fChangeCodeWay();
+			fChangeCode();
 			break;
 		case 3:
 			system("cls");
