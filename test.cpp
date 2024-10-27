@@ -478,10 +478,18 @@ void fRegister() {
 	system("cls");
 }
 void fChangeCode() {
-	cout << "****************请输入更改后的密码****************" << endl;
+	cout << "********************请输入原密码******************" << endl;
 	String Strin;
 	cin >> Strin;
-	changeCode(Strin);
+	if (JudgeCode(Strin) == 1) {
+		cout << "******************密码验证成功！******************" << endl;
+		cout << "****************请输入更改后的密码****************" << endl;
+		String Strin;
+		cin >> Strin;
+		changeCode(Strin);
+	}
+	else
+		cout << "密码验证失败！无法进行修改" << endl;
 	system("pause");
 	system("cls");
 }
