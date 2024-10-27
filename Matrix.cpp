@@ -245,13 +245,6 @@ Matrix Matrix::Get_Inversion() {
 			A[i][j] = 0;
 		}
 	}
-	//memset(A, 0, sizeof A);
-	//for (int i = 0; i < 110; ++i) {
-	//	for (int j = 0; j < 110; ++j) {
-	//		cout<<A[i][j]<<' ';
-	//	}
-	//	cout << endl;
-	//}
 	if (row != col) throw("错误，非方阵不存在逆阵！");
 	for (int i = 1; i <=row; i++) {
 		for (int j = 1; j <= col; j++) {

@@ -265,7 +265,14 @@ void Test_Matrix_Gauss() {
 		b.get_random();
 		b.output(cout);
 		cout << "解向量：" << endl;
-		mtx.Gauss(b).output(cout);
+		try {
+			Vector<double> ans = mtx.Gauss(b);
+			cout << "解向量：" << endl;
+			ans.output(cout);
+		}
+		catch (const char* msg) {
+			cout << msg << endl;
+		}
 	}
 }
 void Test_Matrix_Multipy() {
@@ -518,5 +525,6 @@ void menu() {
 	cout << "*************  3.登陆          *************" << endl;
 	cout << "*************  4.选择加密方式  *************" << endl;
 	cout << "********************************************" << endl;
+	cout << "tips:请先输入4选择加密方式，输入1进行注册，再输入2或3更改密码或登陆" << endl;
 	cout << endl;
 }

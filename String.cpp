@@ -40,6 +40,32 @@ int String::size()
     return this->num;
 }
 
+bool String::isNumber()//有限状态自动机
+{
+    if (num == 0) return false;
+
+    int state = 0;
+    bool finals[9] = { 0, 0, 0, 1, 0, 1, 1, 0, 1 }; // 合法的终止状态
+    int transfer[9][6] = {
+            {0,  1,  6,  2,  -1, -1},
+            {-1, -1, 6,  2,  -1, -1},
+            {-1, -1, 3,  -1, -1, -1},
+            {8,  -1, 3,  -1, 4,  -1},
+            {-1, 7,  5,  -1, -1, -1},
+            {8,  -1, 5,  -1, -1, -1},
+            {8,  -1, 6,  3,  4,  -1},
+            {-1, -1, 5,  -1, -1, -1},
+            {8,  -1, -1, -1, -1, -1},
+    };
+
+    for (int i = 0; i < num; ++i)
+    {
+        state = transfer[state][_make(elems[i])];
+        if (state < 0) return false;
+    }
+    return finals[state];
+}
+
 ostream& operator<<(ostream& out, String& str)
 {
     str.output(out);
